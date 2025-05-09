@@ -39,14 +39,14 @@ try:
             num_skipped = num_skipped + 1
             continue
 
-        # stageid = stage["stageId"]
-        # stage_response = requests.get(f"http://localhost:18080/api/v1/applications/{appid}/stages/{stageid}")
-        # tasks_json = stage_response.json()[0]
-        # for task in tasks_json["tasks"]:
-        #     task_json = tasks_json["tasks"][f"{task}"]
-        #     # Calculate executor run time/deserialize time per task in executor
-        #     exec_run_times.append(int(task_json["taskMetrics"]["executorRunTime"]))
-        #     exec_deserialize_times.append(int(task_json["taskMetrics"]["executorDeserializeTime"]))
+        stageid = stage["stageId"]
+        stage_response = requests.get(f"http://localhost:18080/api/v1/applications/{appid}/stages/{stageid}")
+        tasks_json = stage_response.json()[0]
+        for task in tasks_json["tasks"]:
+            task_json = tasks_json["tasks"][f"{task}"]
+            # Calculate executor run time/deserialize time per task in executor
+            exec_run_times.append(int(task_json["taskMetrics"]["executorRunTime"]))
+            exec_deserialize_times.append(int(task_json["taskMetrics"]["executorDeserializeTime"]))
 
         num_computed_stages = num_computed_stages + 1
         # Calculate total execution time
